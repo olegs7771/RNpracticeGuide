@@ -3,24 +3,23 @@ import { Text, StyleSheet, View } from "react-native";
 
 export default class ListItem extends Component {
   render() {
-    const placesContent = this.props.places.map((place, index) => (
-      <Text key={index} style={styles.text}>
-        {place}
-      </Text>
-    ));
-    return <View style={styles.container}>{placesContent}</View>;
+    return (
+      <View style={styles.container}>
+        <Text style={styles.text}> {this.props.place} </Text>
+      </View>
+    );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    width: "80%",
     margin: 5,
-    backgroundColor: "green"
+    backgroundColor: "#d6d6d6",
+    paddingTop: 2,
+    paddingBottom: 2
   },
   text: {
     fontSize: 20,
-    color: "#ebebeb",
-    padding: 10
+    color: "#ebebeb"
   }
 });

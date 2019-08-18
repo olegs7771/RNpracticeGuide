@@ -33,14 +33,13 @@ class App extends Component {
         buttonEvent={this.buttonHandle}
       />
     );
-    // const placesContent = this.state.places.map((place, index) => (
-    //   <ListItem key={index} place={place} />
-    // ));
+    const placesContent = this.state.places.map((place, index) => (
+      <ListItem key={index} place={place} />
+    ));
     return (
       <View style={styles.container}>
         <View style={styles.FormGroup}>{FormGroupContent}</View>
-        {/* <View style={styles.listItem}>{placesContent}</View> */}
-        <ListItem places={this.state.places} />
+        <View style={styles.listItem}>{placesContent}</View>
       </View>
     );
   }
@@ -56,5 +55,9 @@ const styles = StyleSheet.create({
   },
   FormGroup: {
     width: "80%"
+  },
+
+  listItem: {
+    width: "83%"
   }
 });
