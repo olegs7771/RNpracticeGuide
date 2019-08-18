@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, TextInput, Button } from "react-native";
 import ListItem from "./app/components/ListItem/ListItem";
+import FormGroup from "./app/components/FormGroup/FormGroup";
 
 class App extends Component {
   state = {
@@ -11,6 +12,7 @@ class App extends Component {
     if (this.state.placeName.trim() === "") {
       return;
     }
+    console.log("event");
     this.setState(prevState => {
       return {
         places: prevState.places.concat(this.state.placeName)
@@ -20,26 +22,25 @@ class App extends Component {
   };
 
   render() {
-    const placesContent = this.state.places.map((place, index) => (
-      <ListItem key={index} place={place} />
-    ));
+    const FormGroupContent = (
+      <FormGroup
+        placeName={this.state.placeName}
+        onChangeText={text =>
+          this.setState({
+            placeName: text
+          })
+        }
+        buttonEvent={this.buttonHandle}
+      />
+    );
+    // const placesContent = this.state.places.map((place, index) => (
+    //   <ListItem key={index} place={place} />
+    // ));
     return (
       <View style={styles.container}>
-        <View style={styles.formGroupContainer}>
-          <TextInput
-            style={styles.textInput}
-            value={this.state.placeName.name}
-            onChangeText={text => this.setState({ placeName: text })}
-            placeholder="Fill all fields"
-          />
-          <Button
-            title="text"
-            color="#3aa7f0"
-            style={styles.button}
-            onPress={this.buttonHandle}
-          />
-        </View>
-        <View style={styles.listItem}>{placesContent}</View>
+        <View style={styles.FormGroup}>{FormGroupContent}</View>
+        {/* <View style={styles.listItem}>{placesContent}</View> */}
+        <ListItem places={this.state.places} />
       </View>
     );
   }
@@ -51,21 +52,9 @@ const styles = StyleSheet.create({
     paddingTop: 45,
     justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: "#dae8e8"
+    backgroundColor: "#e3e1e1"
   },
-  textInput: {
-    borderColor: "black",
-    borderBottomWidth: 1,
-    width: "60%"
-  },
-  formGroupContainer: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    alignItems: "center",
-    width: "100%"
-  },
-  listItem: {
-    width: "100%",
-    backgroundColor: "#e4ebf0"
+  FormGroup: {
+    width: "80%"
   }
 });
