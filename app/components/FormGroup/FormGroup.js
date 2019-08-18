@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     justifyContent: "space-between",
-    width: "100%"
+    width: "90%",
+    alignItems: "center"
   },
   textInput: {
     borderColor: "black",
