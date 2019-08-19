@@ -10,6 +10,7 @@ const PlaceList = props => {
         <ListItem
           place={info.item.name}
           deletePlace={() => props.deleteItem(info.item.key)}
+          image={info.item.image}
         />
       )}
       style={styles.container}
