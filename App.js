@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TextInput, Button } from "react-native";
 
 import FormGroup from "./app/components/FormGroup/FormGroup";
 import PlaceList from "./app/components/PlaceList/PlaceList";
-import placeImage from "./assets/picture1.jpg";
+// import placeImage from "./assets/picture1.jpg";
 
 class App extends Component {
   state = {
@@ -17,7 +17,10 @@ class App extends Component {
     const newPlace = {
       key: JSON.stringify(Math.random()),
       name: this.state.placeName,
-      image: placeImage
+      image: {
+        uri:
+          "https://e3.365dm.com/19/08/1600x900/skynews-donald-trump-greenland_4746839.jpg?bypass-service-worker&20190816093103"
+      }
     };
 
     this.setState(prevState => {
