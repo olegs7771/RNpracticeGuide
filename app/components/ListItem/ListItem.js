@@ -1,25 +1,17 @@
-import React, { Component } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
 
-export default class ListItem extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.text}> {this.props.place} </Text>
-      </View>
-    );
-  }
-}
-
+const ListItem = props => (
+  <View style={styles.container}>
+    <Text style={{ color: "white" }}>{props.place}</Text>
+  </View>
+);
 const styles = StyleSheet.create({
   container: {
+    width: "100%",
     margin: 5,
-    backgroundColor: "#d6d6d6",
-    paddingTop: 2,
-    paddingBottom: 2
-  },
-  text: {
-    fontSize: 20,
-    color: "#ebebeb"
+    padding: 10,
+    backgroundColor: "#c7c5bf"
   }
 });
+export default ListItem;
