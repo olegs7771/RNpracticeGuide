@@ -1,10 +1,12 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 const ListItem = props => (
-  <View style={styles.container}>
-    <Text style={{ color: "white" }}>{props.place}</Text>
-  </View>
+  <TouchableOpacity onPress={props.deletePlace}>
+    <View style={styles.container}>
+      <Text style={{ color: "white" }}>{props.place}</Text>
+    </View>
+  </TouchableOpacity>
 );
 const styles = StyleSheet.create({
   container: {

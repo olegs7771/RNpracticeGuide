@@ -6,22 +6,36 @@ import PlaceList from "./app/components/PlaceList/PlaceList";
 
 class App extends Component {
   state = {
-    placeName: "",
+    placeName: {},
     places: []
   };
   buttonHandle = () => {
     if (this.state.placeName.trim() === "") {
       return;
     }
+    const newPlace = {
+      key: JSON.stringify(Math.random()),
+      name: this.state.placeName
+    };
+
     this.setState(prevState => {
       return {
-        places: prevState.places.concat(this.state.placeName)
+        places: prevState.places.concat(newPlace)
+      };
+    });
+  };
+  deleteItemHandle = key => {
+    this.setState(prevState => {
+      return {
+        places: prevState.places.filter(place => {
+          return place.key !== key;
+        })
       };
     });
   };
 
   render() {
-    console.log("this.state.placeNamaqe", this.state.placeName);
+    console.log("this.state.places", this.state.places);
 
     return (
       <View style={styles.container}>
@@ -30,7 +44,10 @@ class App extends Component {
           onChangeText={text => this.setState({ placeName: text })}
         />
 
-        <PlaceList places={this.state.places} />
+        <PlaceList
+          places={this.state.places}
+          deleteItem={this.deleteItemHandle}
+        />
       </View>
     );
   }
