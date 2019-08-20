@@ -73,7 +73,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 45,
     justifyContent: "flex-start",
-    alignItems: "center",
-    backgroundColor: "#dae8e8"
+    alignItems: "center"
   }
 });
