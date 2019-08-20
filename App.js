@@ -3,12 +3,13 @@ import { StyleSheet, Text, View, TextInput, Button } from "react-native";
 
 import FormGroup from "./app/components/FormGroup/FormGroup";
 import PlaceList from "./app/components/PlaceList/PlaceList";
-// import placeImage from "./assets/picture1.jpg";
+import PlaceDetail from "./app/components/PlaceDetail/PlaceDetail";
 
 class App extends Component {
   state = {
     placeName: {},
-    places: []
+    places: [],
+    selectedPlace: null
   };
   buttonHandle = () => {
     if (this.state.placeName.trim() === "") {
@@ -29,21 +30,30 @@ class App extends Component {
       };
     });
   };
-  deleteItemHandle = key => {
+  selectItemHandle = key => {
     this.setState(prevState => {
       return {
-        places: prevState.places.filter(place => {
-          return place.key !== key;
+        selectedPlace: prevState.places.find(place => {
+          return place.key === key;
         })
       };
     });
+
+    // this.setState(prevState => {
+    //   return {
+    //     places: prevState.places.filter(place => {
+    //       return place.key !== key;
+    //     })
+    //   };
+    // });
   };
 
   render() {
-    console.log("this.state.places", this.state.places);
+    console.log("this.state. selectedPlace", this.state.selectedPlace);
 
     return (
       <View style={styles.container}>
+        <PlaceDetail selectedPlace={this.state.selectedPlace} />
         <FormGroup
           buttonEvent={this.buttonHandle}
           onChangeText={text => this.setState({ placeName: text })}
@@ -51,7 +61,7 @@ class App extends Component {
 
         <PlaceList
           places={this.state.places}
-          deleteItem={this.deleteItemHandle}
+          onItemSelected={this.selectItemHandle}
         />
       </View>
     );
