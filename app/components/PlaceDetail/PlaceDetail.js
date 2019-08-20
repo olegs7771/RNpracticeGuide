@@ -7,26 +7,33 @@ const PlaceDetail = props => {
     modalContent = (
       <View>
         <Image source={props.selectedPlace.image} style={styles.image} />
-        <Text>{props.selectedPlace.name}</Text>
+        <Text style={styles.text}>{props.selectedPlace.name}</Text>
       </View>
     );
   }
 
   return (
-    <Modal visible={props.selectedPlace !== null} animationType="slide">
+    <Modal
+      onRequestClose={props.onModalClosed}
+      visible={props.selectedPlace !== null}
+      animationType="slide"
+    >
       <View style={styles.modalContainer}>
         {modalContent}
 
         <View style={styles.buttons}>
-          <Button title="Close" />
-          <Button title="Delete" color="red" />
+          <Button title="Close" onPress={props.onModalClosed} />
+          <Button title="Delete" color="red" onPress={props.onItemDeleted} />
         </View>
       </View>
     </Modal>
   );
 };
 const styles = StyleSheet.create({
-  modalContainer: {},
+  modalContainer: {
+    marginLeft: 20,
+    marginRight: 20
+  },
   buttons: {
     flexDirection: "row",
     justifyContent: "center"
@@ -34,6 +41,11 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: 200
+  },
+  text: {
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: 25
   }
 });
 

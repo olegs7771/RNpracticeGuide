@@ -48,12 +48,33 @@ class App extends Component {
     // });
   };
 
+  onModalClosedHandle = () => {
+    console.log("closed");
+    this.setState({
+      selectedPlace: null
+    });
+  };
+  onItemDeletedHandle = () => {
+    this.setState(prevState => {
+      return {
+        places: prevState.places.filter(place => {
+          return place.key !== prevState.selectedPlace.key;
+        }),
+        selectedPlace: null
+      };
+    });
+  };
+
   render() {
     console.log("this.state. selectedPlace", this.state.selectedPlace);
 
     return (
       <View style={styles.container}>
-        <PlaceDetail selectedPlace={this.state.selectedPlace} />
+        <PlaceDetail
+          selectedPlace={this.state.selectedPlace}
+          onModalClosed={this.onModalClosedHandle}
+          onItemDeleted={this.onItemDeletedHandle}
+        />
         <FormGroup
           buttonEvent={this.buttonHandle}
           onChangeText={text => this.setState({ placeName: text })}
@@ -71,6 +92,8 @@ export default App;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginLeft: 20,
+    marginRight: 20,
     paddingTop: 45,
     justifyContent: "flex-start",
     alignItems: "center"
