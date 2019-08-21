@@ -4,6 +4,9 @@ import { StyleSheet, Text, View, TextInput, Button } from "react-native";
 import FormGroup from "./app/components/FormGroup/FormGroup";
 import PlaceList from "./app/components/PlaceList/PlaceList";
 import PlaceDetail from "./app/components/PlaceDetail/PlaceDetail";
+import { Provider } from "react-redux";
+import configureStore from "./store";
+const store = configureStore();
 
 class App extends Component {
   state = {
@@ -69,22 +72,24 @@ class App extends Component {
     console.log("this.state. selectedPlace", this.state.selectedPlace);
 
     return (
-      <View style={styles.container}>
-        <PlaceDetail
-          selectedPlace={this.state.selectedPlace}
-          onModalClosed={this.onModalClosedHandle}
-          onItemDeleted={this.onItemDeletedHandle}
-        />
-        <FormGroup
-          buttonEvent={this.buttonHandle}
-          onChangeText={text => this.setState({ placeName: text })}
-        />
+      <Provider store={store}>
+        <View style={styles.container}>
+          <PlaceDetail
+            selectedPlace={this.state.selectedPlace}
+            onModalClosed={this.onModalClosedHandle}
+            onItemDeleted={this.onItemDeletedHandle}
+          />
+          <FormGroup
+            buttonEvent={this.buttonHandle}
+            onChangeText={text => this.setState({ placeName: text })}
+          />
 
-        <PlaceList
-          places={this.state.places}
-          onItemSelected={this.selectItemHandle}
-        />
-      </View>
+          <PlaceList
+            places={this.state.places}
+            onItemSelected={this.selectItemHandle}
+          />
+        </View>
+      </Provider>
     );
   }
 }
