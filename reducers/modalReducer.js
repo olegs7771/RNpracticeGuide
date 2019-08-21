@@ -1,8 +1,6 @@
 import { CLOSE_MODEL, DELETE_MODEL } from "../action/types";
 const initialState = {
-  placeName: {},
-  places: [],
-  selectedPlace: null
+  close: false
 };
 export default function(state = initialState, action) {
   switch (action.type) {
