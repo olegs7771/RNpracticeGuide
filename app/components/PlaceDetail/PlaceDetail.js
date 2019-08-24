@@ -1,6 +1,15 @@
 import React from "react";
-import { View, Text, Modal, Image, Button, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Modal,
+  Image,
+  Button,
+  StyleSheet,
+  TouchableOpacity
+} from "react-native";
 import { connect } from "react-redux";
+import { Ionicons } from "@expo/vector-icons";
 
 const PlaceDetail = props => {
   let modalContent;
@@ -23,7 +32,15 @@ const PlaceDetail = props => {
         {modalContent}
 
         <View style={styles.buttons}>
-          <Button title="Close" onPress={props.onModalClosed} />
+          <TouchableOpacity style={styles.button} onPress={props.onModalClosed}>
+            <Ionicons
+              name="ios-trash"
+              size={25}
+              color="green"
+              onPress={this.onPressHandle}
+              style={styles.icon}
+            />
+          </TouchableOpacity>
           <Button title="Delete" color="red" onPress={props.onItemDeleted} />
         </View>
       </View>
@@ -39,6 +56,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center"
   },
+  button: {
+    backgroundColor: "yellow",
+    width: 70,
+    height: 40,
+    padding: 5,
+    marginRight: 5
+  },
+  icon: {
+    textAlign: "center"
+  },
+
   image: {
     width: "100%",
     height: 200

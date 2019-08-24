@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet, FlatList } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity
+} from "react-native";
 
 export class SendBox extends Component {
   state = {
@@ -21,6 +27,9 @@ export class SendBox extends Component {
         name: "four"
       }
     ]
+  };
+  onPressHandle = () => {
+    console.log("pressed");
   };
   render() {
     const { arr } = this.state;
@@ -49,6 +58,11 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 30
+  },
+  button: {
+    alignItems: "center",
+    backgroundColor: "#DDDDD4",
+    padding: 10
   }
 });
 
