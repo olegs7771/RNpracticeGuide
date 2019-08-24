@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, Modal, Image, Button, StyleSheet } from "react-native";
+import { connect } from "react-redux";
 
 const PlaceDetail = props => {
   let modalContent;
@@ -48,5 +49,8 @@ const styles = StyleSheet.create({
     fontSize: 25
   }
 });
+const mapStateToProps = state => ({
+  selectedPlace: state.modal.selectedPlace
+});
 
-export default PlaceDetail;
+export default connect(mapStateToProps)(PlaceDetail);

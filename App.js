@@ -1,106 +1,27 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
-
-import FormGroup from "./app/components/FormGroup/FormGroup";
-import PlaceList from "./app/components/PlaceList/PlaceList";
-import PlaceDetail from "./app/components/PlaceDetail/PlaceDetail";
+import { StyleSheet, Text, View } from "react-native";
+import SendBox from "./SendBox";
+import Home from "./app/components/Home/Home";
 import { Provider } from "react-redux";
 import configureStore from "./store";
 const store = configureStore();
 
 class App extends Component {
-  state = {
-    placeName: {},
-    places: [],
-    selectedPlace: null
-  };
-  buttonHandle = () => {
-    if (this.state.placeName.trim() === "") {
-      return;
-    }
-    const newPlace = {
-      key: JSON.stringify(Math.random()),
-      name: this.state.placeName,
-      image: {
-        uri:
-          "https://e3.365dm.com/19/08/1600x900/skynews-donald-trump-greenland_4746839.jpg?bypass-service-worker&20190816093103"
-      }
-    };
-
-    this.setState(prevState => {
-      return {
-        places: prevState.places.concat(newPlace)
-      };
-    });
-  };
-  selectItemHandle = key => {
-    this.setState(prevState => {
-      return {
-        selectedPlace: prevState.places.find(place => {
-          return place.key === key;
-        })
-      };
-    });
-
-    // this.setState(prevState => {
-    //   return {
-    //     places: prevState.places.filter(place => {
-    //       return place.key !== key;
-    //     })
-    //   };
-    // });
-  };
-
-  onModalClosedHandle = () => {
-    console.log("closed");
-    this.setState({
-      selectedPlace: null
-    });
-  };
-  onItemDeletedHandle = () => {
-    this.setState(prevState => {
-      return {
-        places: prevState.places.filter(place => {
-          return place.key !== prevState.selectedPlace.key;
-        }),
-        selectedPlace: null
-      };
-    });
-  };
-
   render() {
-    console.log("this.state. selectedPlace", this.state.selectedPlace);
-
     return (
       <Provider store={store}>
         <View style={styles.container}>
-          <PlaceDetail
-            selectedPlace={this.state.selectedPlace}
-            onModalClosed={this.onModalClosedHandle}
-            onItemDeleted={this.onItemDeletedHandle}
-          />
-          <FormGroup
-            buttonEvent={this.buttonHandle}
-            onChangeText={text => this.setState({ placeName: text })}
-          />
-
-          <PlaceList
-            places={this.state.places}
-            onItemSelected={this.selectItemHandle}
-          />
+          <Home />
+          <SendBox />
         </View>
       </Provider>
     );
   }
 }
-export default App;
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    marginLeft: 20,
-    marginRight: 20,
-    paddingTop: 45,
-    justifyContent: "flex-start",
-    alignItems: "center"
+    flex: 1
   }
 });
+
+export default App;

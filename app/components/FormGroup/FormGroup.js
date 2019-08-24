@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet, TextInput, Button } from "react-native";
 
 class FormGroup extends Component {
-  buttonHandle = () => {
-    this.props.buttonEvent();
+  addPlaceHandle = () => {
+    this.props.addPlace();
   };
   render() {
     return (
@@ -19,7 +19,7 @@ class FormGroup extends Component {
           title="text"
           color="#3aa7f0"
           style={styles.button}
-          onPress={this.buttonHandle}
+          onPress={this.addPlaceHandle}
         />
       </View>
     );

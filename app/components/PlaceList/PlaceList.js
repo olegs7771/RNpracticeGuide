@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Text, StyleSheet, View, Alert, FlatList } from "react-native";
 import ListItem from "../ListItem/ListItem";
+import { connect } from "react-redux";
 
 const PlaceList = props => {
   return (
@@ -23,4 +24,8 @@ const styles = StyleSheet.create({
     marginTop: 10
   }
 });
-export default PlaceList;
+const mapStateToProps = state => ({
+  places: state.modal.places
+});
+
+export default connect(mapStateToProps)(PlaceList);

@@ -1,2 +1,4 @@
-export const CLOSE_MODEL = "CLOSE_MODEL";
-export const DELETE_MODEL = "DELETE_MODEL";
+export const DELETE_PLACE = "DELETE_PLACE";
+export const ADD_PLACE = "ADD_PLACE";
+export const CLOSE_PLACE = "CLOSE_PLACE";
+export const SELECT_PLACE = "SELECT_PLACE";
