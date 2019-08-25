@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import FormGroup from "../FormGroup/FormGroup";
 import PlaceList from "../PlaceList/PlaceList";
 import PlaceDetail from "../PlaceDetail/PlaceDetail";
+import SendBox from '../../../SendBox';
 import {
   addPlace,
   selectPlace,
@@ -13,6 +14,10 @@ import {
 } from "../../../action/modalAction";
 
 export class Home extends Component {
+
+  static navigationOptions={
+    header:null
+  }
   state = {
     placeName: {},
     places: [],
@@ -94,6 +99,7 @@ export class Home extends Component {
           // places={this.state.places}
           onItemSelected={this.selectItemHandle}
         />
+        <SendBox/>
       </View>
     );
   }

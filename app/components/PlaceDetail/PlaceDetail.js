@@ -32,16 +32,25 @@ const PlaceDetail = props => {
         {modalContent}
 
         <View style={styles.buttons}>
-          <TouchableOpacity style={styles.button} onPress={props.onModalClosed}>
+          <TouchableOpacity style={styles.buttonClose} onPress={props.onModalClosed}>
             <Ionicons
-              name="ios-trash"
+              name="ios-close"
               size={25}
-              color="green"
+              color="white"
               onPress={this.onPressHandle}
               style={styles.icon}
             />
           </TouchableOpacity>
-          <Button title="Delete" color="red" onPress={props.onItemDeleted} />
+          <TouchableOpacity style={styles.buttonDelete} onPress={props.onItemDeleted}>
+            <Ionicons
+              name="ios-trash"
+              size={25}
+              color="white"
+              onPress={this.onPressHandle}
+              style={styles.icon}
+            />
+          </TouchableOpacity>
+          {/* <Button title="Delete" color="red" onPress={props.onItemDeleted} /> */}
         </View>
       </View>
     </Modal>
@@ -56,8 +65,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center"
   },
-  button: {
-    backgroundColor: "yellow",
+  buttonDelete: {
+    backgroundColor: "red",
+    width: 70,
+    height: 40,
+    padding: 5,
+    marginRight: 5
+  },
+  buttonClose: {
+    backgroundColor: "grey",
     width: 70,
     height: 40,
     padding: 5,
