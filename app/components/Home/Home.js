@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 import { connect } from "react-redux";
 import FormGroup from "../FormGroup/FormGroup";
 import PlaceList from "../PlaceList/PlaceList";
 import PlaceDetail from "../PlaceDetail/PlaceDetail";
-import SendBox from '../../../SendBox';
+
 import {
   addPlace,
   selectPlace,
@@ -14,22 +14,14 @@ import {
 } from "../../../action/modalAction";
 
 export class Home extends Component {
-
-  static navigationOptions={
-    header:null
-  }
+  static navigationOptions = {
+    header: null
+  };
   state = {
     placeName: {},
     places: [],
     selectedPlace: null
   };
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevState.places !== this.state.places) {
-  //     //dispatch action
-  //     this.props.addPlace(this.state.places);
-  //   }
-  // }
 
   addPlaceHandle = () => {
     if (this.state.placeName.trim() === "") {
@@ -47,21 +39,6 @@ export class Home extends Component {
   };
   selectItemHandle = key => {
     this.props.onSelectPlace(key);
-    // this.setState(prevState => {
-    //   return {
-    //     selectedPlace: prevState.places.find(place => {
-    //       return place.key === key;
-    //     })
-    //   };
-    // });
-
-    // this.setState(prevState => {
-    //   return {
-    //     places: prevState.places.filter(place => {
-    //       return place.key !== key;
-    //     })
-    //   };
-    // });
   };
   onModalClosedHandle = () => {
     this.props.onClosePlace();
@@ -72,23 +49,19 @@ export class Home extends Component {
   };
   onItemDeletedHandle = () => {
     this.props.onDeletePlace();
-    // this.setState(prevState => {
-    //   return {
-    //     places: prevState.places.filter(place => {
-    //       return place.key !== prevState.selectedPlace.key;
-    //     }),
-    //     selectedPlace: null
-    //   };
-    // });
   };
 
   render() {
     return (
       <View style={styles.container}>
+        <View style={styles.containerTitle}>
+          <Text style={styles.textTitle}>Welcome To Awesome App</Text>
+        </View>
         <PlaceDetail
           selectedPlace={this.state.selectedPlace}
           onModalClosed={this.onModalClosedHandle}
           onItemDeleted={this.onItemDeletedHandle}
+          navigate={this.props.navigation.navigate}
         />
         <FormGroup
           addPlace={this.addPlaceHandle}
@@ -99,7 +72,6 @@ export class Home extends Component {
           // places={this.state.places}
           onItemSelected={this.selectItemHandle}
         />
-        <SendBox/>
       </View>
     );
   }
@@ -110,8 +82,14 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
     paddingTop: 45,
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "center"
+  },
+  containerTitle: {
+    marginVertical: 20
+  },
+  textTitle: {
+    fontSize: 22
   }
 });
 

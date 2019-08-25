@@ -50,7 +50,8 @@ const PlaceDetail = props => {
               style={styles.icon}
             />
           </TouchableOpacity>
-          {/* <Button title="Delete" color="red" onPress={props.onItemDeleted} /> */}
+         
+          
         </View>
       </View>
     </Modal>
@@ -74,6 +75,13 @@ const styles = StyleSheet.create({
   },
   buttonClose: {
     backgroundColor: "grey",
+    width: 70,
+    height: 40,
+    padding: 5,
+    marginRight: 5
+  },
+  buttonSendBox: {
+    backgroundColor: "black",
     width: 70,
     height: 40,
     padding: 5,
