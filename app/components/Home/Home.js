@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
 import { connect } from "react-redux";
 import FormGroup from "../FormGroup/FormGroup";
@@ -52,6 +52,7 @@ export class Home extends Component {
   };
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         <View style={styles.containerTitle}>
@@ -72,16 +73,31 @@ export class Home extends Component {
           // places={this.state.places}
           onItemSelected={this.selectItemHandle}
         />
+        <View style={styles.containerButtons}>
+          <TouchableOpacity
+            style={styles.buttonLogin}
+            onPress={() => navigate("LoginRT")}
+          >
+            <Text>Login</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.buttonSignup}
+            onPress={() => navigate("SignupRT")}
+          >
+            <Text>Signup</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
 }
 const styles = StyleSheet.create({
   container: {
-    flex: 8,
+    flex: 6,
     marginLeft: 20,
     marginRight: 20,
     paddingTop: 45,
+    paddingBottom: "30%",
     justifyContent: "center",
     alignItems: "center"
   },
@@ -90,6 +106,25 @@ const styles = StyleSheet.create({
   },
   textTitle: {
     fontSize: 22
+  },
+  containerButtons: {
+    flexDirection: "row",
+    justifyContent: "space-between"
+  },
+  buttonLogin: {
+    alignItems: "center",
+    paddingTop: 5,
+    marginRight: 10,
+    height: 30,
+    width: 60,
+    backgroundColor: "#a7cfeb"
+  },
+  buttonSignup: {
+    alignItems: "center",
+    paddingTop: 5,
+    height: 30,
+    width: 60,
+    backgroundColor: "#839feb"
   }
 });
 
