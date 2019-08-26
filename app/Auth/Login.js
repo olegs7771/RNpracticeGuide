@@ -1,5 +1,13 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View, TextInput } from "react-native";
+import {
+  Text,
+  StyleSheet,
+  View,
+  TextInput,
+  Button,
+  Alert,
+  AsyncStorage
+} from "react-native";
 
 export default class Login extends Component {
   static navigationOptions = {
@@ -10,21 +18,47 @@ export default class Login extends Component {
     email: "",
     password: ""
   };
+  componentDidMount() {
+    AsyncStorage.getItem("email").then(email => {
+      this.setState({
+        email
+      });
+    });
+  }
+  loginFormHandle = () => {
+    const { email, password } = this.state;
+    let newUser;
+    if (email === "") {
+      Alert.alert("Email Empty");
+    } else if (password === "") {
+      Alert.alert("Password Empty");
+    } else {
+      loggedUser = {
+        email,
+        password
+      };
+      console.log(loggedUser);
+    }
+  };
+
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.textTitle}> Login Page </Text>
         <View style={styles.containerTextInput}>
           <TextInput
+            value={this.state.email}
             placeholder="Email.."
             style={styles.textInput}
             onChangeText={text => this.setState({ email: text })}
           />
           <TextInput
+            value={this.state.password}
             placeholder="Password"
             style={styles.textInput}
             onChangeText={text => this.setState({ password: text })}
           />
+          <Button title="Login" onPress={this.loginFormHandle} />
         </View>
       </View>
     );
