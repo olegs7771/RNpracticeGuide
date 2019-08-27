@@ -76,7 +76,7 @@ export class Home extends Component {
         <View style={styles.containerButtons}>
           <TouchableOpacity
             style={styles.buttonLogin}
-            onPress={() => navigate("LoginRT")}
+            onPress={() => navigate("DashboardRT")}
           >
             <Text>Login</Text>
           </TouchableOpacity>

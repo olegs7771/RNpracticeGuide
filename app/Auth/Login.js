@@ -27,7 +27,7 @@ export default class Login extends Component {
   }
   loginFormHandle = () => {
     const { email, password } = this.state;
-    let newUser;
+    let loggedUser;
     if (email === "") {
       Alert.alert("Email Empty");
     } else if (password === "") {
