@@ -86,6 +86,12 @@ export class Home extends Component {
           >
             <Text>Signup</Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.buttonSignup}
+            onPress={() => navigate("CounterRT")}
+          >
+            <Text>Counter</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -124,7 +130,8 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     height: 30,
     width: 60,
-    backgroundColor: "#839feb"
+    backgroundColor: "#839feb",
+    marginRight: 10
   }
 });
 

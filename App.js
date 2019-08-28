@@ -5,6 +5,7 @@ import Icon from "@expo/vector-icons/Ionicons";
 import Home from "./app/components/Home/Home";
 import Login from "./app/Auth/Login";
 import Signup from "./app/Auth/Signup";
+import Counter from "./app/views/Counter";
 import DashBoard from "./app/views/DashBoard";
 
 import { Provider } from "react-redux";
@@ -35,14 +36,18 @@ import {
 const DashBoardTabNavigator = createBottomTabNavigator(
   {
     Login,
-    Signup,
-    Home
+    Home,
+    Signup
   },
   {
     navigationOptions: ({ navigation }) => {
       const { routeName } = navigation.state.routes[navigation.state.index];
       return {
-        headerTitle: routeName
+        headerTitle: routeName,
+        headerStyle: {
+          backgroundColor: "#fcba03"
+        },
+        headerTintColor: "#fff"
       };
     }
   }
@@ -53,8 +58,8 @@ const DashBoardTabNavigator = createBottomTabNavigator(
 const DashBoardStackNavigator = createStackNavigator(
   {
     DashBoardTabNavigator: DashBoardTabNavigator,
-    DashboardRT: {
-      screen: DashBoard
+    CounterRT: {
+      screen: Counter
     }
   },
   {
@@ -63,11 +68,15 @@ const DashBoardStackNavigator = createStackNavigator(
         headerLeft: (
           <Icon
             style={{ paddingLeft: 10 }}
-            name="md-menu"
+            name="md-add-circle"
+            color="#fff"
             size={30}
             onPress={() => navigation.openDrawer()}
           />
-        )
+        ),
+        headerStyle: {
+          backgroundColor: "#fcba03"
+        }
       };
     }
   }
